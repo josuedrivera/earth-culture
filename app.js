@@ -18,14 +18,14 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 
 const userRoutes = require('./routes/users');
-const campgroundRoutes = require('./routes/campgrounds');
+const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/reviews');
 
 // const MongoDBStore = require('connect-mongo')(session);
 const MongoDBStore = require('connect-mongo');
 
 // const dbUrl = process.env.DB_URL;
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/earth-culture';
 
 // mongoose.connect('mongodb://localhost:27017/yelp-camp', {
 mongoose.connect(dbUrl, {
@@ -38,7 +38,7 @@ mongoose.connect(dbUrl, {
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
-    console.log("Database connected");
+    console.log("Database Connected");
 });
 
 const app = express();
@@ -203,16 +203,17 @@ app.use((req, res, next) => {
     next();
 })
 
-
-app.use('/', userRoutes);
-app.use('/campgrounds', campgroundRoutes)
-app.use('/campgrounds/:id/reviews', reviewRoutes)
-
+app.use('/', userRoutes)
+app.use('/products', productRoutes)
+app.use('/products/:id/reviews', reviewRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
 });
 
+// app.get('/about', (req, res) => {
+//     res.render('products/about')
+// });
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
@@ -224,10 +225,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err })
 })
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`Serving on port ${port}`)
 })
-// app.listen(3000, () => {
-//     console.log('Serving on port 3000')
-// })

@@ -23,7 +23,7 @@
     "sanitize-html": "^2.6.1",
     "uuid": "^8.3.2"
   },
-  "name": "yelpcamp",
+  "name": "earth-culture",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -32,13 +32,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/josuedrivera/yelpCamp.git"
+    "url": "git+https://github.com/josuedrivera/earth-culture.git"
   },
   "author": "Josue Rivera",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/josuedrivera/yelpCamp/issues"
+    "url": "https://github.com/josuedrivera/earth-culture/issues"
   },
-  "homepage": "https://github.com/josuedrivera/yelpCamp#readme",
+  "homepage": "https://github.com/josuedrivera/earth-culture#readme",
   "description": ""
 }
