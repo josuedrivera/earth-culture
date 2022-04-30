@@ -11,7 +11,7 @@ const user = require('../models/user');
 //     .post(catchAsync(users.about));
 
 // router.get('/new', isLoggedIn, products.renderNewForm)
-// router.get('/about', users.renderAbout)
+router.get('/about', users.renderAbout)
 // router.get('/about', catchAsync(users.renderAbout))
 
 
