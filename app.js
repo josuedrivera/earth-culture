@@ -17,6 +17,7 @@ const helmet = require('helmet');
 
 const mongoSanitize = require('express-mongo-sanitize');
 
+const aboutRoutes = require('./routes/about');
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/reviews');
@@ -212,8 +213,9 @@ app.get('/', (req, res) => {
 });
 
 // app.get('/about', (req, res) => {
-//     res.render('products/about')
+//     res.render('about')
 // });
+app.use('/about', aboutRoutes)
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
