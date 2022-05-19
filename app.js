@@ -207,6 +207,7 @@ app.use((req, res, next) => {
 app.use('/', userRoutes)
 app.use('/products', productRoutes)
 app.use('/products/:id/reviews', reviewRoutes)
+app.use('/about', aboutRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
@@ -215,7 +216,6 @@ app.get('/', (req, res) => {
 // app.get('/about', (req, res) => {
 //     res.render('about')
 // });
-app.use('/about', aboutRoutes)
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
