@@ -1,32 +1,33 @@
 const Product = require('../models/product');
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-const mapBoxToken = process.env.MAPBOX_TOKEN;
-const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+// const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+// const mapBoxToken = process.env.MAPBOX_TOKEN;
+// const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 
 
 module.exports.index = async (req, res) => {
-    const products = await Product.find({}).populate('popupText');
+    const products = await Product.find({}).populate('');
+    // const products = await Product.find({}).populate('popupText');
     res.render('products/index', { products })
 }
 
-module.exports.index = async (req, res) => {
-    const products = await Product.find({}).populate({
-			path: 'popupText',
-			strictPopulate: false,
-		});
-    res.render('products/index', { products })
-}
+// module.exports.index = async (req, res) => {
+//     const products = await Product.find({}).populate({
+// 			path: 'popupText',
+// 			strictPopulate: false,
+// 		});
+//     res.render('products/index', { products })
+// }
 
 module.exports.renderNewForm = (req, res) => {
     res.render('products/new');
 }
 
 module.exports.createProduct = async (req, res, next) => {
-    const geoData = await geocoder.forwardGeocode({
-        query: req.body.product.location,
-        limit: 1
-    }).send()
+    // const geoData = await geocoder.forwardGeocode({
+    //     query: req.body.product.location,
+    //     limit: 1
+    // }).send()
     const product = new Product(req.body.product);
     product.geometry = geoData.body.features[0].geometry;
     product.images = req.files.map(f => ({ url: f.path, filename: f.filename }));

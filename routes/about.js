@@ -19,7 +19,7 @@ router.get('/about', (req, res) => {
     res.render('../about');
 })
 
-
+// router.get('/about', isLoggedIn, about.renderAbout)
 
 // router.get('/about', about.renderAbout)
 // router.get('/about', catchAsync(users.renderAbout))
